@@ -27,7 +27,7 @@ import {
               </Thead>
               <Tbody>
                 {facturas.map((factura) => (
-                    <Tr>
+                    <Tr key={factura.id}>
                         <Td>{factura.client}</Td>
                         <Td>{factura.number}</Td>
                         <Td>{new Date(factura.createdAt).toLocaleDateString()}</Td>
