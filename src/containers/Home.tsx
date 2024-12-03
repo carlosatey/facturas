@@ -1,18 +1,23 @@
 import {Table} from "../components/Table";
-import Axios from "../axios/axios"
+import {getFacturas } from "../api/apiFacturas";
+import { useQuery } from "@tanstack/react-query";
 
 const Home = () => {
-    const { Facturas, isLoading, error } = Axios();
+
+    const {isLoading,data ,isError } = useQuery({
+        queryKey: ['facturas'],
+        queryFn: getFacturas
+    })
 
     return (
         <>
-            <h1>Home Facturas</h1>
+            <h1>Home</h1>
             {isLoading ? (
                 <p>Cargando...</p>
-            ) : error ? (
+            ) : isError ? (
                 <p>Ocurrió un error al cargar los datos.</p>
             ) : (
-                <Table facturas={Facturas} />
+                <Table facturas={data} />
             )}
             
         </>
