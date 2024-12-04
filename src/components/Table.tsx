@@ -15,14 +15,14 @@ import {
     return (
         <TableContainer>
             <TablaChakra variant='simple'>
-              <TableCaption>Tabla de Facturas</TableCaption>
+              <TableCaption></TableCaption>
               <Thead>
                 <Tr>
                   <Th>Cliente</Th>
                   <Th>Numero</Th>
-                  <Th isNumeric>fecha de Creacion</Th>
+                  <Th>fecha de Creacion</Th>
                   <Th>Pagada</Th>
-                  <Th isNumeric>Fecha de Pago</Th>
+                  <Th>Fecha de Pago</Th>
                 </Tr>
               </Thead>
               <Tbody>
