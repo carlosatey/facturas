@@ -1,17 +1,15 @@
-import {
-    Table as TablaChakra,
-    Thead,
-    Tbody,
-    Tfoot,
-    Tr,
-    Th,
-    Td,
-    TableCaption,
-    TableContainer,
-  } from '@chakra-ui/react';
-  import { Facturas } from '../types/Facturas';
+import { Table as TablaChakra, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,TableContainer} from '@chakra-ui/react';
+import { Facturas } from '../types/Facturas';
+import { MdOutlineDeleteOutline } from "react-icons/md";
+import { deleteFactura } from '../api/apiFacturas';
+import { Modal } from './Modal';
 
-  const Table =  ({ facturas }: IProps) => {
+  const Table =  ({ facturas, refetch }: TableProps) => {
+
+    const handleDelete = (id: string) => {
+      deleteFactura(id).then(() => refetch)
+    }
+
     return (
         <TableContainer>
             <TablaChakra variant='simple'>
@@ -23,6 +21,7 @@ import {
                   <Th>fecha de Creacion</Th>
                   <Th>Pagada</Th>
                   <Th>Fecha de Pago</Th>
+                  <Th>Operaciones</Th>
                 </Tr>
               </Thead>
               <Tbody>
@@ -33,6 +32,9 @@ import {
                         <Td>{new Date(factura.createdAt).toLocaleDateString()}</Td>
                         <Td>{factura.paid ? 'Sí' : 'No'}</Td>
                         <Td>{new Date(factura.paymentDate).toLocaleDateString()}</Td>
+                        <Td>
+                          {<Modal icon={<MdOutlineDeleteOutline color="red" size={20}/>} handleClick={()=>handleDelete(factura.id)}/>}
+                        </Td>
                     </Tr>
                 ))}
 
@@ -44,6 +46,7 @@ import {
                   <Th>fecha de Creacion</Th>
                   <Th>Pagada</Th>
                   <Th>Fecha de Pago</Th>
+                  <Th>Operaciones</Th>
                 </Tr>
               </Tfoot>
             </TablaChakra>
@@ -51,8 +54,9 @@ import {
     )
   }
 
-  type IProps = {
+  interface TableProps  {
     facturas: Facturas[];
+    refetch?: () => void;
   };
 
 export {Table}

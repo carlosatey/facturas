@@ -6,9 +6,10 @@ import { Button } from '@chakra-ui/react'
 
 const Home = () => {
 
-    const {isLoading,data ,isError } = useQuery({
+    const {isLoading, data ,isError, refetch } = useQuery({
         queryKey: ['facturas'],
         queryFn: () => getFacturas('/facturas'),
+        refetchInterval: 1000
     })
 
     return (
@@ -20,7 +21,7 @@ const Home = () => {
                 <p>Ocurrió un error al cargar los datos.</p>
             ) : (
                 <>
-                     <Table facturas={data} />
+                     <Table facturas={data} refetch={refetch} />
                      <Button colorScheme='green'>
                         <Link to="/new">Agregar Factura</Link>
                      </Button>

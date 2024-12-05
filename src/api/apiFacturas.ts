@@ -20,3 +20,7 @@ export const getFacturas = async (endpoint:string) => {
 // Post Factura
 export const postFactura =(data: Facturas) => apiFacturas.post('/facturas', data);
 
+// Delete Factura
+export const deleteFactura = (id: string) => {
+  return apiFacturas.delete(`/facturas/${id}`);
+};
