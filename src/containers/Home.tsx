@@ -8,13 +8,13 @@ const Home = () => {
 
     const {isLoading, data ,isError, refetch } = useQuery({
         queryKey: ['facturas'],
-        queryFn: () => getFacturas('/facturas'),
+        queryFn: () => getFacturas(),
         refetchInterval: 1000
     })
 
     return (
         <>
-            <h1 className="text-3xl font-bold">Home</h1>
+            <h1 className="text-3xl font-bold mb-8">Home</h1>
             {isLoading ? (
                 <p>Cargando...</p>
             ) : isError ? (

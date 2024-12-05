@@ -3,11 +3,16 @@ import { Facturas } from '../types/Facturas';
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { deleteFactura } from '../api/apiFacturas';
 import { Modal } from './Modal';
+import { FaRegEye } from "react-icons/fa";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
   const Table =  ({ facturas, refetch }: TableProps) => {
+    const [isLoadingRequest, setLoadingRequest] = useState(false)
 
     const handleDelete = (id: string) => {
-      deleteFactura(id).then(() => refetch)
+      setLoadingRequest(true);
+      deleteFactura(id).then(() => refetch).finally(() => setLoadingRequest(false))
     }
 
     return (
@@ -32,8 +37,14 @@ import { Modal } from './Modal';
                         <Td>{new Date(factura.createdAt).toLocaleDateString()}</Td>
                         <Td>{factura.paid ? 'Sí' : 'No'}</Td>
                         <Td>{new Date(factura.paymentDate).toLocaleDateString()}</Td>
-                        <Td>
-                          {<Modal icon={<MdOutlineDeleteOutline color="red" size={20}/>} handleClick={()=>handleDelete(factura.id)}/>}
+                        <Td className='flex justify-between justify-center items-center'>
+                          {<Modal loadingButton={isLoadingRequest} 
+                            tittleModal='Borrar Factura' 
+                            textModal='Estas seguro que deseas eliminar esta factura.' 
+                            icon={<MdOutlineDeleteOutline color="red" size={20}/>} 
+                            handleClick={()=>handleDelete(factura.id)}
+                          />}
+                          <Link to={`/show/${factura.id}`}>{<FaRegEye />}</Link>
                         </Td>
                     </Tr>
                 ))}

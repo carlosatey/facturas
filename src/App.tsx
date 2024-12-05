@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {Home} from "./containers/Home";
 import { New } from "./containers/New";
+import { Show } from "./containers/Show";
 import './App.css'
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
         <Route>
           <Route path="/" element={<Home/>} />
           <Route path="/new" element={<New />} />
+          <Route path="/show/:idFactura" element={<Show />} />
         </Route>
       </Routes>
     </BrowserRouter>

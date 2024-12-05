@@ -7,15 +7,19 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogOverlay,
+  Button
 } from "@chakra-ui/react"
 
-interface BasicUsageProps {
+interface ModalProps {
   isOpen?: boolean
   icon?: any
+  tittleModal?: string
+  textModal?: string
+  loadingButton: boolean
   handleClick?: () => void;
 }
 
-const Modal = (props: BasicUsageProps) => {
+const Modal = (props: ModalProps) => {
   const [isOpen, setIsOpen] = React.useState(props.isOpen || false)
 
   const onOpen = () => setIsOpen(true)
@@ -37,15 +41,29 @@ const Modal = (props: BasicUsageProps) => {
       >
         <AlertDialogOverlay>
           <AlertDialogContent>
-            <AlertDialogHeader>Borrar Factura</AlertDialogHeader>
+            <AlertDialogHeader>{props.tittleModal}</AlertDialogHeader>
             <AlertDialogBody>
-              Estas seguro que deseas eliminar esta factura
+              {props.textModal}
             </AlertDialogBody>
             <AlertDialogFooter>
-              <button type="button" ref={cancelRef} onClick={onClose} className="mr-5">
+            <Button
+              isLoading={props.loadingButton}
+              loadingText='Eliminando'
+              colorScheme='teal'
+              variant='outline'
+              onClick={props.handleClick}
+            >
+              Si
+            </Button>
+              <Button 
+                ref={cancelRef} 
+                onClick={onClose}
+                colorScheme='teal'
+                variant='outline' 
+                className="ml-5"
+              >
                 No
-              </button>
-              <button type="button" onClick={props.handleClick}>Yes, delete</button>
+              </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialogOverlay>

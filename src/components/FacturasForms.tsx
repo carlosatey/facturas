@@ -32,9 +32,6 @@ const FacturasForm = () => {
         <Flex display='flex' alignItems='center' justifyContent='center'  width='600px'>
             <Box flex='1' bg='white' >
                 <h1 className='mb-4 text-3xl font-bold'>Formulario</h1>
-                <Button colorScheme='gray' className='mb-4'>
-                    <Link to="/">Ir a Home</Link>
-                </Button>
                 <Formik
                     initialValues={{ number: 0, paymentDate: '',paid: false, client: '',createdAt: '' }}
                     validationSchema={validationSchema}
@@ -44,7 +41,8 @@ const FacturasForm = () => {
                             position: 'bottom-left',
                             render: () => (
                               <Box color='white' p={3} bg='blue.500'>
-                                {JSON.stringify(values)}
+                                {/* JSON.stringify(values) */}
+                                <p>Factura agregada correctamente</p>
                               </Box>
                             ),
                           })

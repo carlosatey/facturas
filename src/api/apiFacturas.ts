@@ -6,9 +6,21 @@ const apiFacturas = axios.create({
 })
 
 // Get Facturas
-export const getFacturas = async (endpoint:string) => {
+export const getFacturas = async () => {
   try {
-    const response = await apiFacturas.get(endpoint);
+    const response = await apiFacturas.get('/facturas');
+    console.log("Datos obtenidos:", response.data);
+    return response.data;
+  } catch (err) {
+    console.error("Hubo un error con la solicitud GET:", err);
+
+  }
+}
+
+// Get Facturas en base a su id
+export const getFacturasById = async (id:string) => {
+  try {
+    const response = await apiFacturas.get(`/facturas/${id}`);
     console.log("Datos obtenidos:", response.data);
     return response.data;
   } catch (err) {
