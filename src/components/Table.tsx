@@ -41,7 +41,7 @@ import { Link } from 'react-router-dom';
                         <Td className='flex justify-between justify-center items-center'>
                           {<Modal loadingButton={isLoadingRequest} 
                             tittleModal='Borrar Factura' 
-                            textModal='Estas seguro que deseas eliminar esta factura.' 
+                            textModal='¿Estas seguro que deseas eliminar esta factura?' 
                             icon={<MdOutlineDeleteOutline color="red" size={20}/>} 
                             handleClick={()=>handleDelete(factura.id)}
                           />}

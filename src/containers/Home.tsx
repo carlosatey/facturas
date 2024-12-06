@@ -23,14 +23,16 @@ const Home = () => {
 
     return (
         <>
-            <h1 className="text-3xl font-bold mb-8">Home</h1>
+            <Flex alignItems={"center"} justifyContent={"center"}>
+                <h1 className="text-3xl font-bold mt-5">Home</h1>
+            </Flex>
             {isLoading ? (
                 <p>Cargando...</p>
             ) : isError ? (
                 <p>Ocurrió un error al cargar los datos.</p>
             ) : (
                 <>
-                    <Flex flexDirection='column'>
+                    <Flex flexDirection='column' width={'100%'} px={20}>
                         <Box w='100%' p={4} color='black' display={"flex"} gap={10}>
                             <Select placeholder='Todas las facturas' onChange={(e) => {
                                 const value = e.target.value;

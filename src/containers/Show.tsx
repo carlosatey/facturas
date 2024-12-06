@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useFacturas } from "../api/useFacturas";
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import { List, ListItem, ListIcon, Button, Flex, Center} from '@chakra-ui/react'
+import { List, ListItem, ListIcon, Button, Flex} from '@chakra-ui/react'
 import { MdCheckCircle } from "react-icons/md";
 
 const Show = () => {    
@@ -16,15 +16,14 @@ const Show = () => {
 
     return(
         <>
-        <h1 className="text-3xl font-bold mb-8">Detalles de la factura</h1>
-
         {isLoading ? (
                 <p>Cargando...</p>
             ) : isError ? (
                 <p>Ocurrió un error al cargar los datos.</p>
             ) : (
                 <>
-                    <Flex alignItems={"center"} justifyContent={"center"} flexDirection={"column"}>
+                    <Flex alignItems={"center"} justifyContent={"center"} flexDirection={"column"} height={'100vh'}>
+                      <h1 className="text-3xl font-bold mb-8">Detalles de la factura</h1>
                         <List spacing={3} textAlign={"left"}>
                             <ListItem>
                               <ListIcon as={MdCheckCircle} color='green.500' />
