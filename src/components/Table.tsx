@@ -1,7 +1,7 @@
-import { Table as TablaChakra, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,TableContainer, Box} from '@chakra-ui/react';
+import { Table as TablaChakra, Thead, Tbody, Tr, Th, Td, TableCaption,TableContainer, Box} from '@chakra-ui/react';
 import { Facturas } from '../types/Facturas';
 import { MdOutlineDeleteOutline } from "react-icons/md";
-import { deleteFactura } from '../api/apiFacturas';
+import { useFacturas } from '../api/useFacturas';
 import { Modal } from './Modal';
 import { FaRegEye } from "react-icons/fa";
 import { useState } from 'react';
@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 
   const Table =  ({ facturas, refetch }: TableProps) => {
     const [isLoadingRequest, setLoadingRequest] = useState(false)
+    const {deleteFactura} = useFacturas()
 
     const handleDelete = (id: string) => {
       setLoadingRequest(true);
@@ -18,7 +19,7 @@ import { Link } from 'react-router-dom';
     return (
         <TableContainer>
             <TablaChakra variant='simple'>
-              <TableCaption></TableCaption>
+              <TableCaption placement='top' fontSize={22} marginBottom={5}>Número Total de Facturas: {facturas.length}</TableCaption>
               <Thead>
                 <Tr>
                   <Th>Cliente</Th>

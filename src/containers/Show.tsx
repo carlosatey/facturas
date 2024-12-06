@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { getFacturasById } from "../api/apiFacturas";
+import { useFacturas } from "../api/useFacturas";
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import {Button} from "@chakra-ui/react"
 
 const Show = () => {    
     const {idFactura} = useParams();
+    const {getFacturasById} = useFacturas();
 
     const {isLoading, data ,isError} = useQuery({
         queryKey: ['facturas_by_id'],

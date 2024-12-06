@@ -1,8 +1,7 @@
 import { Formik } from 'formik';
 import { Flex, useToast, Box,Input, Checkbox} from '@chakra-ui/react';
 import { Button } from '@chakra-ui/react';
-import { Link } from "react-router-dom";
-import { postFactura } from '../api/apiFacturas';
+import { useFacturas } from '../api/useFacturas';
 import { useMutation } from '@tanstack/react-query';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate  } from 'react-router-dom';
@@ -11,6 +10,7 @@ import * as Yup from 'yup';
 const FacturasForm = () => {
     const toast = useToast()
     const navigate = useNavigate();
+    const {postFactura} = useFacturas(); 
 
     const addFacturaMutation= useMutation({
         mutationFn: postFactura 

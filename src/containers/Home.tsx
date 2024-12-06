@@ -1,5 +1,5 @@
 import {Table} from "../components/Table";
-import {getFacturas } from "../api/apiFacturas";
+import {useFacturas } from "../api/useFacturas";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { Button, Flex, Select, Box } from '@chakra-ui/react';
@@ -8,6 +8,7 @@ import { Facturas } from "../types/Facturas";
 
 const Home = () => {
     const [filteredData, setFilteredData] = useState<Facturas[]>([]);
+    const {getFacturas} = useFacturas();
 
     const {isLoading, data ,isError, refetch } = useQuery({
         queryKey: ['facturas'],
@@ -30,8 +31,8 @@ const Home = () => {
             ) : (
                 <>
                     <Flex flexDirection='column'>
-                        <Box w='100%' p={4} color='black' marginBottom={5} display={"flex"} gap={10}>
-                            <Select placeholder='Todo' onChange={(e) => {
+                        <Box w='100%' p={4} color='black' display={"flex"} gap={10}>
+                            <Select placeholder='Todas las facturas' onChange={(e) => {
                                 const value = e.target.value;
                                 if (value === 'paid') {
                                     handleFilter(true);
