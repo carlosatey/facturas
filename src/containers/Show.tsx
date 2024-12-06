@@ -2,7 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useFacturas } from "../api/useFacturas";
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import {Button} from "@chakra-ui/react"
+import { List, ListItem, ListIcon, Button, Flex, Center} from '@chakra-ui/react'
+import { MdCheckCircle } from "react-icons/md";
 
 const Show = () => {    
     const {idFactura} = useParams();
@@ -23,14 +24,35 @@ const Show = () => {
                 <p>Ocurrió un error al cargar los datos.</p>
             ) : (
                 <>
-                     <p>Nombre del cliente: {data.client}</p>
-                     <p>Fecha de Pago: {data.createdAt}</p>
-                     <p>Pagado: {data.paid.toString()}</p>
-                     <p>Numero: {data.number}</p>
-                     <p>Fecha de Pago: {data.paymentDate}</p>
-                     <Button colorScheme='gray' className='mt-8'>
-                        <Link to="/">Atras</Link>
-                    </Button>
+                    <Flex alignItems={"center"} justifyContent={"center"} flexDirection={"column"}>
+                        <List spacing={3} textAlign={"left"}>
+                            <ListItem>
+                              <ListIcon as={MdCheckCircle} color='green.500' />
+                              Nombre del cliente: {data.client}
+                            </ListItem>
+                            <ListItem>
+                              <ListIcon as={MdCheckCircle} color='green.500' />
+                              Fecha de Pago: {data.createdAt}
+                            </ListItem>
+                            <ListItem>
+                              <ListIcon as={MdCheckCircle} color='green.500' />
+                              Pagado: {data.paid.toString()}
+                            </ListItem>
+                            {/* You can also use custom icons from react-icons */}
+                            <ListItem>
+                              <ListIcon as={MdCheckCircle} color='green.500' />
+                              Numero: {data.number}
+                            </ListItem>
+                            <ListItem>
+                              <ListIcon as={MdCheckCircle} color='green.500' />
+                              Fecha de Pago: {data.paymentDate}
+                            </ListItem>
+                        </List>
+                        <Button colorScheme='gray' className='mt-8'>
+                            <Link to="/">Atras</Link>
+                        </Button>
+                    </Flex>
+                    
                 </>
             )}
         </>
