@@ -1,4 +1,4 @@
-import { Table as TablaChakra, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,TableContainer} from '@chakra-ui/react';
+import { Table as TablaChakra, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption,TableContainer, Box} from '@chakra-ui/react';
 import { Facturas } from '../types/Facturas';
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { deleteFactura } from '../api/apiFacturas';
@@ -35,7 +35,7 @@ import { Link } from 'react-router-dom';
                         <Td>{factura.client}</Td>
                         <Td>{factura.number}</Td>
                         <Td>{new Date(factura.createdAt).toLocaleDateString()}</Td>
-                        <Td>{factura.paid ? 'Sí' : 'No'}</Td>
+                        <Td>{factura.paid ? <Box textAlign='center' bg='green' color='white'>Si</Box> : <Box textAlign='center' bg='red' color='white'>No</Box> }</Td>
                         <Td>{new Date(factura.paymentDate).toLocaleDateString()}</Td>
                         <Td className='flex justify-between justify-center items-center'>
                           {<Modal loadingButton={isLoadingRequest} 
@@ -50,16 +50,6 @@ import { Link } from 'react-router-dom';
                 ))}
 
               </Tbody>
-              <Tfoot>
-                <Tr>
-                  <Th>Cliente</Th>
-                  <Th>Numero</Th>
-                  <Th>fecha de Creacion</Th>
-                  <Th>Pagada</Th>
-                  <Th>Fecha de Pago</Th>
-                  <Th>Operaciones</Th>
-                </Tr>
-              </Tfoot>
             </TablaChakra>
         </TableContainer>
     )
