@@ -44,6 +44,18 @@ export const useFacturas = () => {
     }
   };
 
+  // Put Factura
+  const updateFactura = async (factura:Facturas) => {
+    try {
+      const response = await apiFacturas.put(`/facturas/${factura.id}`, factura);
+      console.log("Factura creada:", response.data);
+      return response.data;
+    } catch (err) {
+      console.error("Hubo un error con la solicitud POST:", err);
+      throw err;
+    }
+  };
+
   // Delete Factura
   const deleteFactura = async (id: string) => {
     try {
@@ -61,6 +73,7 @@ export const useFacturas = () => {
     getFacturasById,
     postFactura,
     deleteFactura,
+    updateFactura
   };
 }
 

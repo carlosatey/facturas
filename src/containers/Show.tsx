@@ -10,7 +10,7 @@ const Show = () => {
     const {getFacturasById} = useFacturas();
 
     const {isLoading, data ,isError} = useQuery({
-        queryKey: ['facturas_by_id'],
+        queryKey: ['facturas_show'],
         queryFn: () => getFacturasById(`${idFactura}`)
     })
 

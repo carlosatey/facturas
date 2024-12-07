@@ -1,21 +1,43 @@
 import { Formik } from 'formik';
-import { Flex, useToast, Box,Input, Checkbox, flexbox} from '@chakra-ui/react';
+import { Flex, useToast, Box,Input, Checkbox} from '@chakra-ui/react';
+import { Facturas } from '../types/Facturas';
 import { Button } from '@chakra-ui/react';
 import { useFacturas } from '../api/useFacturas';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate  } from 'react-router-dom';
 import { Link } from "react-router-dom"
 import * as Yup from 'yup';
+import { format } from 'date-fns';
 
-const FacturasForm = () => {
+
+interface formFactura {
+    factura?: Facturas
+}
+
+const FacturasForm = ({factura}:formFactura) => {
     const toast = useToast()
     const navigate = useNavigate();
-    const {postFactura} = useFacturas(); 
+    const {postFactura ,updateFactura} = useFacturas(); 
+    const queryClient = useQueryClient();
 
-    const addFacturaMutation= useMutation({
-        mutationFn: postFactura 
+    const addFactura = useMutation({
+        mutationFn: postFactura,
+        onSuccess: () => {
+            queryClient.invalidateQueries()
+        } 
     })
+
+    const editFactura = useMutation({
+        mutationFn: updateFactura, 
+        onSuccess: () => {
+            queryClient.invalidateQueries()
+        }
+    });
+    
+    const removeQueryFromCache = () => {
+      queryClient.removeQueries({ queryKey: ['facturas_edit'], exact: true })
+    };
 
     const validationSchema = Yup.object({
         number: Yup.number()
@@ -34,24 +56,50 @@ const FacturasForm = () => {
             <Box display='flex' bg='white' border="1px" borderColor="white" boxShadow="0 0 10px rgba(0, 110, 0, 0.4)"  borderRadius={10} p={8} flexDirection={'column'}>
                 <h1 className='mb-8 text-3xl font-bold text-center'>Formulario Factura</h1>
                 <Formik
-                    initialValues={{ number: 0, paymentDate: '',paid: false, client: '',createdAt: '' }}
+                    initialValues={{ 
+                        number: factura? factura.number: 0, 
+                        paymentDate:  factura?  format(new Date(factura.paymentDate), 'yyyy-MM-dd'): "",
+                        paid: factura ? factura.paid : false, 
+                        client: factura? factura.client: "",
+                        createdAt:  factura? format(new Date(factura.createdAt), 'yyyy-MM-dd'): "" 
+                    }}
                     validationSchema={validationSchema}
                     onSubmit={(values, { setSubmitting }) => {
-                      setTimeout(() => {
-                        toast({
-                            position: 'bottom-left',
-                            render: () => (
-                              <Box color='white' p={3} bg='blue.500'>
-                                {/* JSON.stringify(values) */}
-                                <p>Factura agregada correctamente</p>
-                              </Box>
-                            ),
-                          })
-                        setSubmitting(false);
-                      }, 400);
-                      const objectFacture = { ...values, id: uuidv4() };
-                      addFacturaMutation.mutate(objectFacture);
-                      navigate('/')
+
+                        if(factura) {
+                            setTimeout(() => {
+                                toast({
+                                    position: 'bottom-left',
+                                    render: () => (
+                                      <Box color='white' p={3} bg='blue.500'>
+                                        {/* JSON.stringify(values) */}
+                                        <p>Factura Editada Correctamente</p>
+                                      </Box>
+                                    ),
+                                  })
+                                setSubmitting(false);
+                            }, 400);
+                            const objectFactureUpdate = { ...values, id: factura.id };
+                            editFactura.mutate(objectFactureUpdate)
+                            removeQueryFromCache();
+                        }else {
+                            setTimeout(() => {
+                                toast({
+                                    position: 'bottom-left',
+                                    render: () => (
+                                      <Box color='white' p={3} bg='green.500'>
+                                        {/* JSON.stringify(values) */}
+                                        <p>Factura agregada correctamente</p>
+                                      </Box>
+                                    ),
+                                  })
+                                setSubmitting(false);
+                              }, 400);
+                              const objectFacture = { ...values, id: uuidv4() };
+                              addFactura.mutate(objectFacture);
+                        }
+                        navigate('/')
+                        
                     }}
                 >
                 {({
@@ -93,7 +141,8 @@ const FacturasForm = () => {
                     className='mb-4 ml-4'
                     onChange={(e) => handleChange({ target: { name: e.target.name, value: e.target.checked } })}
                     onBlur={handleBlur}
-                    checked={values.paid}
+                    isChecked={values.paid}
+                    
                     >
                     Paid
                     </Checkbox>
@@ -122,7 +171,7 @@ const FacturasForm = () => {
                     />
                     {errors.createdAt && touched.createdAt && errors.createdAt}
                     <Box display={'flex'} gap={5} alignItems={'center'} justifyContent={'center'} marginTop={8}>
-                        <Button colorScheme='gray'>
+                        <Button colorScheme='gray' onClick={() => removeQueryFromCache()}>
                             <Link to="/">Cancelar</Link>
                         </Button>
                         <Button type="submit" disabled={isSubmitting} colorScheme='green'>

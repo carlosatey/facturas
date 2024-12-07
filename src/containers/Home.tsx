@@ -10,10 +10,9 @@ const Home = () => {
     const [filteredData, setFilteredData] = useState<Facturas[]>([]);
     const {getFacturas} = useFacturas();
 
-    const {isLoading, data ,isError, refetch } = useQuery({
+    const {isLoading, data ,isError} = useQuery({
         queryKey: ['facturas'],
         queryFn: () => getFacturas(),
-        refetchInterval: 1000
     })
 
     const handleFilter = (param:boolean) => {
@@ -51,7 +50,7 @@ const Home = () => {
                                 <Link to="/new">Agregar Factura</Link>
                             </Button>
                         </Box>
-                        <Table facturas={filteredData.length ? filteredData: data} refetch={refetch} />
+                        <Table facturas={filteredData.length ? filteredData: data}/>
                         
                     </Flex>    
                 </>
