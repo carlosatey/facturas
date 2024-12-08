@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { useFacturas } from "../api/useFacturas";
+import { useFacturas } from "../hooks/useFacturas";
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { List, ListItem, ListIcon, Button, Flex} from '@chakra-ui/react'
 import { MdCheckCircle } from "react-icons/md";
 import { format } from 'date-fns';
+import { Spinner } from '@chakra-ui/react';
 
 const Show = () => {    
     const {idFactura} = useParams();
@@ -18,7 +19,15 @@ const Show = () => {
     return(
         <>
         {isLoading ? (
-                <p>Cargando...</p>
+                <Flex h={'100vh'} w={'100vw'} alignItems={'center'} justifyContent={'center'}>
+                  <Spinner
+                  thickness='4px'
+                  speed='0.65s'
+                  emptyColor='gray.200'
+                  color='blue.500'
+                  size='xl'
+                  />
+                </Flex>
             ) : isError ? (
                 <p>Ocurrió un error al cargar los datos.</p>
             ) : (

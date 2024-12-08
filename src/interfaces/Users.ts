@@ -1,8 +1,9 @@
 export interface Users {
-    id: number,
-    name: string,
-    lastName: string,
-    email: string,
-    phone: number,
-    password: string
+    id?: string | null;
+    createdAt?: Date | null;
+    nombre?: string | null;
+    apellidos?: string | null;
+    telefono?: string | null;
+    email?: string | null;
+    password?: string | null;
 }

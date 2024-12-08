@@ -2,7 +2,7 @@ import { Formik } from 'formik';
 import { Flex, useToast, Box,Input, Checkbox} from '@chakra-ui/react';
 import { Facturas } from '../interfaces/Facturas';
 import { Button } from '@chakra-ui/react';
-import { useFacturas } from '../api/useFacturas';
+import { useFacturas } from '../hooks/useFacturas';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate  } from 'react-router-dom';

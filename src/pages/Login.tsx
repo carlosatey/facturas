@@ -1,11 +1,18 @@
 import { Formik } from 'formik';
 import { useState } from 'react';
-import { Input, Text, Flex, Box, Button, Link  } from '@chakra-ui/react';
+import { Input, Text, Flex, Box, Button, Link, useToast } from '@chakra-ui/react';
 import * as Yup from 'yup';
 import { Link as RouterLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../context/auth.context';
+import { useLogin } from '../hooks/useLogin';
 
 const Login = () => {
     const [isLoading, setLoading] = useState(false)
+    const { setUser, setAuth } = useAuthContext();
+    const navigate = useNavigate();
+    const toast = useToast();
+    const {userLogin} = useLogin();
 
     // Esquema de validación Login
     const validationSchemaLogin = Yup.object({
@@ -16,6 +23,25 @@ const Login = () => {
         .min(6, 'La contraseña debe tener al menos 6 caracteres')
         .required('La contraseña es obligatoria'),
     });
+
+    const onSubmit = async (values: { email: string; password: string; }) => {
+        const response = await userLogin(values);
+
+        if (!response?.auth) {
+            return toast({
+                title: response?.error,
+                status: 'error',
+            })
+        }
+
+        localStorage?.setItem("auth", response?.auth.toString())
+        localStorage?.setItem("user", JSON.stringify(response?.user))
+        setUser(response?.user)
+        setAuth(true)
+        setLoading(false)
+
+        navigate("/home")
+    }
 
     return (
         <div>
@@ -29,14 +55,7 @@ const Login = () => {
                 <Formik
                   initialValues={{ email: '', password: ''}}
                   validationSchema={validationSchemaLogin}
-                  onSubmit={(values, actions) => {
-                    setLoading(true)
-                    setTimeout(() => {
-                      alert(JSON.stringify(values, null, 2));
-                      actions.setSubmitting(false);
-                      setLoading(false)
-                    }, 1000);
-                  }}
+                  onSubmit={onSubmit}
                 >
                   {props => (
                     <form onSubmit={props.handleSubmit}>

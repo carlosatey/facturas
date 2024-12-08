@@ -2,7 +2,7 @@ import { Table as TablaChakra, Thead, Tbody, Tr, Th, Td, TableCaption,TableConta
 import { Facturas } from '../interfaces/Facturas';
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useFacturas } from '../api/useFacturas';
+import { useFacturas } from '../hooks/useFacturas';
 import { Modal } from './Modal';
 import { FaRegEye } from "react-icons/fa";
 import { useState } from 'react';

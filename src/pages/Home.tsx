@@ -1,15 +1,19 @@
-import {Table} from "../components/Table";
-import {useFacturas } from "../api/useFacturas";
+import { Table } from "../components/Table";
+import { useFacturas } from "../hooks/useFacturas";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { Button, Flex, Select, Box } from '@chakra-ui/react';
 import { useState } from "react";
 import { Facturas } from "../interfaces/Facturas";
-import { Spinner } from '@chakra-ui/react'
+import { Spinner } from '@chakra-ui/react';
+import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../context/auth.context"; 
 
 const Home = () => {
     const [filteredData, setFilteredData] = useState<Facturas[]>([]);
     const {getFacturas} = useFacturas();
+    const navigate = useNavigate();
+    const {logout} = useAuthContext()
 
     const {isLoading, data ,isError} = useQuery({
         queryKey: ['facturas'],
@@ -57,6 +61,9 @@ const Home = () => {
                             </Select>
                             <Button colorScheme="green" p={4}>
                                 <Link to="/new">Agregar Factura</Link>
+                            </Button>
+                            <Button onClick={ ()=> logout(navigate)}>
+                                Cerrar Sesion
                             </Button>
                         </Box>
                         <Table facturas={filteredData.length ? filteredData: data}/>
