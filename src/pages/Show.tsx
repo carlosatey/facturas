@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import { List, ListItem, ListIcon, Button, Flex} from '@chakra-ui/react'
 import { MdCheckCircle } from "react-icons/md";
+import { format } from 'date-fns';
 
 const Show = () => {    
     const {idFactura} = useParams();
@@ -31,7 +32,7 @@ const Show = () => {
                             </ListItem>
                             <ListItem>
                               <ListIcon as={MdCheckCircle} color='green.500' />
-                              Fecha de Pago: {data.createdAt}
+                              Fecha de Pago: {format(new Date(data.createdAt), 'yyyy-MM-dd')}
                             </ListItem>
                             <ListItem>
                               <ListIcon as={MdCheckCircle} color='green.500' />
@@ -44,11 +45,11 @@ const Show = () => {
                             </ListItem>
                             <ListItem>
                               <ListIcon as={MdCheckCircle} color='green.500' />
-                              Fecha de Pago: {data.paymentDate}
+                              Fecha de Pago: {format(new Date(data.paymentDate), 'yyyy-MM-dd')}
                             </ListItem>
                         </List>
                         <Button colorScheme='gray' className='mt-8'>
-                            <Link to="/">Atras</Link>
+                            <Link to="/home">Atras</Link>
                         </Button>
                     </Flex>
                     

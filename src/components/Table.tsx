@@ -1,5 +1,5 @@
 import { Table as TablaChakra, Thead, Tbody, Tr, Th, Td, TableCaption,TableContainer, Box} from '@chakra-ui/react';
-import { Facturas } from '../types/Facturas';
+import { Facturas } from '../interfaces/Facturas';
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useFacturas } from '../api/useFacturas';

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Facturas } from "../types/Facturas";
+import { Facturas } from "../interfaces/Facturas";
 
 const apiFacturas = axios.create({
   baseURL: import.meta.env.VITE_API_URL

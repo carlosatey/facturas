@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import { Flex, useToast, Box,Input, Checkbox} from '@chakra-ui/react';
-import { Facturas } from '../types/Facturas';
+import { Facturas } from '../interfaces/Facturas';
 import { Button } from '@chakra-ui/react';
 import { useFacturas } from '../api/useFacturas';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -98,7 +98,7 @@ const FacturasForm = ({factura}:formFactura) => {
                               const objectFacture = { ...values, id: uuidv4() };
                               addFactura.mutate(objectFacture);
                         }
-                        navigate('/')
+                        navigate('/home')
                         
                     }}
                 >
@@ -118,7 +118,8 @@ const FacturasForm = ({factura}:formFactura) => {
                     id='number'
                     placeholder='Number'
                     className='mb-4'
-                    type='number' name='number' 
+                    type='number' 
+                    name='number' 
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.number}
@@ -172,7 +173,7 @@ const FacturasForm = ({factura}:formFactura) => {
                     {errors.createdAt && touched.createdAt && errors.createdAt}
                     <Box display={'flex'} gap={5} alignItems={'center'} justifyContent={'center'} marginTop={8}>
                         <Button colorScheme='gray' onClick={() => removeQueryFromCache()}>
-                            <Link to="/">Cancelar</Link>
+                            <Link to="/home">Cancelar</Link>
                         </Button>
                         <Button type="submit" disabled={isSubmitting} colorScheme='green'>
                             Enviar

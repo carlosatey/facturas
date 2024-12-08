@@ -1,23 +1,23 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import {Home} from "./containers/Home";
-import { New } from "./containers/New";
-import { Show } from "./containers/Show";
-import { Edit } from "./containers/Edit";
+import { BrowserRouter } from "react-router-dom";
+import {RuterController} from "./components/RuterController";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { ChakraProvider} from '@chakra-ui/react';
 import './App.css'
 
 function App() {
-  
+
+  const queryClient = new QueryClient();
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route>
-          <Route path="/" element={<Home/>} />
-          <Route path="/new" element={<New />} />
-          <Route path="/show/:idFactura" element={<Show />} />
-          <Route path="/edit/:idFactura" element={<Edit />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider>
+        <BrowserRouter>
+            <RuterController/>
+        </BrowserRouter>
+        <ReactQueryDevtools/>
+      </ChakraProvider>
+    </QueryClientProvider>    
   )
 }
 

@@ -4,7 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { Button, Flex, Select, Box } from '@chakra-ui/react';
 import { useState } from "react";
-import { Facturas } from "../types/Facturas";
+import { Facturas } from "../interfaces/Facturas";
+import { Spinner } from '@chakra-ui/react'
 
 const Home = () => {
     const [filteredData, setFilteredData] = useState<Facturas[]>([]);
@@ -26,7 +27,15 @@ const Home = () => {
                 <h1 className="text-3xl font-bold mt-5">Home</h1>
             </Flex>
             {isLoading ? (
-                <p>Cargando...</p>
+                <Flex h={'100vh'} w={'100vw'} alignItems={'center'} justifyContent={'center'}>
+                    <Spinner
+                    thickness='4px'
+                    speed='0.65s'
+                    emptyColor='gray.200'
+                    color='blue.500'
+                    size='xl'
+                    />
+                </Flex>
             ) : isError ? (
                 <p>Ocurrió un error al cargar los datos.</p>
             ) : (
