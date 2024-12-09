@@ -52,8 +52,8 @@ const FacturasForm = ({factura}:formFactura) => {
 
 
     return(
-        <Flex display='flex' alignItems='center' justifyContent='center'  width='50%'>
-            <Box display='flex' bg='white' border="1px" borderColor="white" boxShadow="0 0 10px rgba(0, 110, 0, 0.4)"  borderRadius={10} p={8} flexDirection={'column'}>
+        <Flex display='flex' alignItems='center' justifyContent='center' h='100vh' w='100vw'>
+            <Box display='flex' bg='white' border="1px" borderColor="white" h='95vh' boxShadow="0 0 10px rgba(0, 110, 0, 0.4)"  borderRadius={10} p={8} flexDirection={'column'}>
                 <h1 className='mb-8 text-3xl font-bold text-center'>Formulario Factura</h1>
                 <Formik
                     initialValues={{ 
@@ -158,7 +158,7 @@ const FacturasForm = ({factura}:formFactura) => {
                     <Checkbox
                     id='paid'
                     name="paid"
-                    className='mb-4 ml-4'
+                    className='ml-4'
                     onChange={(e) => handleChange({ target: { name: e.target.name, value: e.target.checked } })}
                     onBlur={handleBlur}
                     isChecked={values.paid}
@@ -214,7 +214,7 @@ const FacturasForm = ({factura}:formFactura) => {
                       {errors.createdAt}
                     </Text>
 
-                    <Box display={'flex'} gap={5} alignItems={'center'} justifyContent={'center'} marginTop={8}>
+                    <Box display={'flex'} gap={5} alignItems={'center'} justifyContent={'center'} >
                         <Button colorScheme='gray' onClick={() => removeQueryFromCache()}>
                             <Link to="/home">Cancelar</Link>
                         </Button>
