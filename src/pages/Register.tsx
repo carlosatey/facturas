@@ -53,7 +53,7 @@ const Register = () => {
 
         const { data } = await userRegister({
             ...filteredValues,
-            phone: String(filteredValues?.phone)
+            telefono: String(filteredValues?.phone)
         })
 
         if (data && data?.email === filteredValues?.email) {

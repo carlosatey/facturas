@@ -21,9 +21,9 @@ export const AuthContext = React.createContext<UserContext>({
         createdAt: null,
     },
     auth: false,
-    setUser: (user) => { },
-    setAuth: (auth) => { },
-    logout: (navigate) => { }
+    setUser: () => { },
+    setAuth: () => { },
+    logout: () => { }
 })
 
 export const useAuthContext = () => {

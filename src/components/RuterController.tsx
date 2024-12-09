@@ -9,7 +9,7 @@ import { useAuthContext } from "../context/auth.context";
 
 const RuterController = () => {
     const { auth } = useAuthContext();
-
+    
     return (
         <Routes>
             <Route>

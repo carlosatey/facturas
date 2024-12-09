@@ -105,7 +105,6 @@ const FacturasForm = ({factura}:formFactura) => {
                 {({
                   values,
                   errors,
-                  touched,
                   handleChange,
                   handleBlur,
                   handleSubmit,

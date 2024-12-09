@@ -3,7 +3,7 @@ export interface Users {
     createdAt?: Date | null;
     nombre?: string | null;
     apellidos?: string | null;
-    phone?: string | null;
+    telefono?: string | null;
     email?: string | null;
     password?: string | null;
 }
