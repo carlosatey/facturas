@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import { Flex, useToast, Box,Input, Checkbox} from '@chakra-ui/react';
+import { Flex, useToast, Box,Input, Checkbox, Text} from '@chakra-ui/react';
 import { Facturas } from '../interfaces/Facturas';
 import { Button } from '@chakra-ui/react';
 import { useFacturas } from '../hooks/useFacturas';
@@ -124,7 +124,15 @@ const FacturasForm = ({factura}:formFactura) => {
                     onBlur={handleBlur}
                     value={values.number}
                     />
-                    {errors.number && touched.number && errors.number}
+                    <Text
+                      opacity={errors.number ? 1 : 0}
+                      color="red.500"
+                      fontSize="12px"
+                      mb="3px"
+                    >
+                      {errors.number}
+                    </Text>
+        
                     <label htmlFor="paymentDate">Pyment Date:</label>
                     <Input
                     id='paymentDate'
@@ -135,9 +143,18 @@ const FacturasForm = ({factura}:formFactura) => {
                     onBlur={handleBlur}
                     value={values.paymentDate}
                     />
-                    {errors.paymentDate && touched.paymentDate && errors.paymentDate}
-                    <label htmlFor="paymentDate">Paid:</label>
+                    <Text
+                      opacity={errors.paymentDate ? 1 : 0}
+                      color="red.500"
+                      fontSize="12px"
+                      mb="3px"
+                    >
+                      {errors.paymentDate}
+                    </Text>
+        
+                    <label htmlFor="paid">Paid:</label>
                     <Checkbox
+                    id='paid'
                     name="paid"
                     className='mb-4 ml-4'
                     onChange={(e) => handleChange({ target: { name: e.target.name, value: e.target.checked } })}
@@ -147,7 +164,15 @@ const FacturasForm = ({factura}:formFactura) => {
                     >
                     Paid
                     </Checkbox>
-                    {errors.paid && touched.paid && errors.paid}
+                    <Text
+                      opacity={errors.paid ? 1 : 0}
+                      color="red.500"
+                      fontSize="12px"
+                      mb="3px"
+                    >
+                      {errors.paid}
+                    </Text>
+                    
                     <br />
                     <label htmlFor="client">Client:</label>
                     <Input
@@ -159,7 +184,15 @@ const FacturasForm = ({factura}:formFactura) => {
                     onBlur={handleBlur}
                     value={values.client}
                     />
-                    {errors.client && touched.client && errors.client}
+                    <Text
+                      opacity={errors.client ? 1 : 0}
+                      color="red.500"
+                      fontSize="12px"
+                      mb="3px"
+                    >
+                      {errors.client}
+                    </Text>
+
                     <label htmlFor="createdAt">Fecha de Creado:</label>
                     <Input
                     id='createdAt'
@@ -170,7 +203,15 @@ const FacturasForm = ({factura}:formFactura) => {
                     onBlur={handleBlur}
                     value={values.createdAt}
                     />
-                    {errors.createdAt && touched.createdAt && errors.createdAt}
+                    <Text
+                      opacity={errors.createdAt ? 1 : 0}
+                      color="red.500"
+                      fontSize="12px"
+                      mb="3px"
+                    >
+                      {errors.createdAt}
+                    </Text>
+
                     <Box display={'flex'} gap={5} alignItems={'center'} justifyContent={'center'} marginTop={8}>
                         <Button colorScheme='gray' onClick={() => removeQueryFromCache()}>
                             <Link to="/home">Cancelar</Link>
