@@ -73,9 +73,10 @@ const Register = () => {
 
     return(
         <>
-            <Flex flexDirection={'column'} alignItems={"center"} justifyContent={'center'} h={'100vh'}>
+            <Flex display={'flex'} flexDirection={'column'} alignItems={"center"} justifyContent={'center'} w={'100vw'} h={'100vh'}>
                 <Text mb={5} fontSize={28}>Registro</Text>
-                        <Formik
+                    <Box display={'flex'} w={'100vw'} alignContent={'center'} justifyContent={'center'}>
+                    <Formik
                            initialValues={{ name: '', lastName: '', email: '', password: '', confirmPassword: '', phone: 0 }}
                            validationSchema={validationSchemaRegister}
                            validateOnSubmit={true}
@@ -92,6 +93,7 @@ const Register = () => {
                                 onBlur={props.handleBlur}
                                 value={props.values.name}
                                 name="name"
+                                width="400px"
                                 >
                                 </Input>
                                 <Text
@@ -205,10 +207,10 @@ const Register = () => {
                              </form>
                            )}
                         </Formik>
-                    </Flex>
-           
-                </>
-            )
-}
+                    </Box>   
+                </Flex>
+            </>
+        )
+    }
 
 export {Register}
