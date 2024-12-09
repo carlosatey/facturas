@@ -19,7 +19,7 @@ function App() {
     email: userPerfil?.email || "",
     createdAt: userPerfil?.createdAt || new Date(),
     id: userPerfil?.id || "",
-    telefono: userPerfil?.telefono || "",
+    phone: userPerfil?.phone || "",
     password: ""
   })
 
@@ -35,7 +35,7 @@ function App() {
       email: null,
       createdAt: null,
       id: null,
-      telefono: null,
+      phone: null,
       password: null
     })
 

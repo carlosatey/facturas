@@ -59,10 +59,10 @@ const Home = () => {
                                 <option value='paid' >Pagada</option>
                                 <option value='notPaid'>No Pagada</option>
                             </Select>
-                            <Button colorScheme="green" p={4}>
+                            <Button colorScheme="green" px={8}>
                                 <Link to="/new">Agregar Factura</Link>
                             </Button>
-                            <Button onClick={ ()=> logout(navigate)}>
+                            <Button onClick={ ()=> logout(navigate)} px={8}>
                                 Cerrar Sesion
                             </Button>
                         </Box>

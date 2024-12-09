@@ -98,7 +98,6 @@ const Login = () => {
                         <Box display={'flex'} alignItems={'center'} justifyContent={'center'} mt={5} gap={3} flexDirection={'column'}>
                             <Button 
                                 colorScheme='green' 
-                                size='md' 
                                 p={5} 
                                 type="submit"
                                 isLoading={isLoading}
@@ -107,8 +106,8 @@ const Login = () => {
                             </Button>
                             <Text fontSize={14}>
                                 Aún no tienes una cuenta{' '}
-                                <Link as={RouterLink} to="/register" color="blue.500">
-                                    Regístrate aquí
+                                <Link as={RouterLink} _hover={{ textDecoration: "underline" }} to="/register" color="blue.500">
+                                    Regístrarse
                                 </Link>
                             </Text>
                         </Box>
