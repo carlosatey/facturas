@@ -78,6 +78,9 @@ const Register = () => {
                         <Formik
                            initialValues={{ name: '', lastName: '', email: '', password: '', confirmPassword: '', phone: 0 }}
                            validationSchema={validationSchemaRegister}
+                           validateOnSubmit={true}
+                           validateOnChange={false}
+                           validateOnBlur={false}
                            onSubmit={onSubmit}
                          >
                            {props => (

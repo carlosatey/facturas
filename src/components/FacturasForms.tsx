@@ -64,6 +64,9 @@ const FacturasForm = ({factura}:formFactura) => {
                         createdAt:  factura? format(new Date(factura.createdAt), 'yyyy-MM-dd'): "" 
                     }}
                     validationSchema={validationSchema}
+                    validateOnSubmit={true}
+                    validateOnChange={false}
+                    validateOnBlur={false}
                     onSubmit={(values, { setSubmitting }) => {
 
                         if(factura) {
