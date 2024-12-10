@@ -33,7 +33,7 @@ const Home = () => {
     return (
         <>
             <Flex alignItems={"center"} justifyContent={"center"}>
-                <h1 className="text-3xl font-bold mt-5">Home</h1>
+                <Text mb='5' mt='5' fontWeight='bold' fontSize={24}> Home </Text>
             </Flex>
             {isLoading ? (
                 <Flex h={'100vh'} w={'100vw'} alignItems={'center'} justifyContent={'center'}>
@@ -58,7 +58,7 @@ const Home = () => {
                             </Button>
                         </Box>
 
-                        <Table facturas={filteredData.length ? filteredData: data}/>
+                        <Table items={filteredData.length ? filteredData: data} columnOperation={true}/>
                         
                     </Flex>    
                 </>

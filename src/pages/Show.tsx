@@ -27,7 +27,7 @@ const Show = () => {
             ) : (
                 <>
                     <Flex alignItems={"center"} justifyContent={"center"} flexDirection={"column"} height={'100vh'}>
-                      <h1 className="text-3xl font-bold mb-8">Detalles de la factura</h1>
+                      <Text mb='8' fontWeight='bold' fontSize={24}> Detalles de la factura</Text>
                         <List spacing={3} textAlign={"left"}>
                             {Object.entries(data).map(([key, value]) => (
                               <ListItem 

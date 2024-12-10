@@ -10,10 +10,11 @@ import { Link } from 'react-router-dom';
 import { FaEdit } from "react-icons/fa";
 
 interface TableProps  {
-  facturas: Facturas[];
+  items: Facturas[];
+  columnOperation: boolean
 };
 
-const Table =  ({ facturas}: TableProps) => {
+const Table =  ({ items, columnOperation}: TableProps) => {
   const [isLoadingRequest, setLoadingRequest] = useState(false)
   const {deleteFactura} = useFacturas()
   const queryClient = useQueryClient();
@@ -34,35 +35,36 @@ const Table =  ({ facturas}: TableProps) => {
   return (
       <TableContainer>
           <TablaChakra variant='simple'>
-            <TableCaption placement='top' fontSize={22} marginBottom={5}>Número Total de Facturas: {facturas.length}</TableCaption>
+            <TableCaption placement='top' fontSize={22} marginBottom={5}>Número Total de Facturas: {items.length}</TableCaption>
             <Thead>
               <Tr>
-                <Th>Cliente</Th>
-                <Th>Numero</Th>
-                <Th>fecha de Creacion</Th>
-                <Th>Pagada</Th>
-                <Th>Fecha de Pago</Th>
-                <Th>Operaciones</Th>
+              {Object.entries(items[0])
+              .filter(([key]) => key !== "id")
+              .map(([key]) => (
+                <Th textAlign="center" key={key}>{key}</Th>
+              ))}
+              {columnOperation && <Th textAlign="center">Operations</Th>}
               </Tr>
             </Thead>
             <Tbody>
-              {facturas.map((factura) => (
-                  <Tr key={factura.id}>
-                      <Td>{factura.client}</Td>
-                      <Td>{factura.number}</Td>
-                      <Td>{new Date(factura.createdAt).toLocaleDateString()}</Td>
-                      <Td>{factura.paid ? <Box textAlign='center' bg='green' color='white'>Si</Box> : <Box textAlign='center' bg='red' color='white'>No</Box> }</Td>
-                      <Td>{new Date(factura.paymentDate).toLocaleDateString()}</Td>
+              {items.map((item) => (
+                  <Tr key={item.id}>
+                    {Object.entries(item).filter(([key]) => key !== "id").map(([key, value]) => (
+                      <Td key={key} textAlign="center">{typeof value === "boolean" ? (value ? <Box textAlign='center' bg='green' color='white'>Yes</Box> : <Box textAlign='center' bg='red' color='white'>No</Box> ) : value}</Td>        
+                    ))}
+
+                    {columnOperation && 
                       <Td className='flex justify-between justify-center items-center'>
-                        {<Modal loadingButton={isLoadingRequest} 
-                          tittleModal={`Borrar Factura #${factura.number}`} 
-                          textModal='¿Estas seguro que deseas eliminar esta factura?' 
-                          icon={<MdOutlineDeleteOutline color="red" size={20}/>} 
-                          handleClick={()=>handleDelete(factura.id)}
-                        />}
-                        <Link to={`/edit/${factura.id}`}>{<FaEdit  color='blue'/>}</Link>
-                        <Link to={`/show/${factura.id}`}>{<FaRegEye />}</Link>
-                      </Td>
+                      {<Modal loadingButton={isLoadingRequest} 
+                        tittleModal={`Borrar Factura #${item.number}`} 
+                        textModal='¿Estas seguro que deseas eliminar esta factura?' 
+                        icon={<MdOutlineDeleteOutline color="red" size={20}/>} 
+                        handleClick={()=>handleDelete(item.id)}
+                      />}
+                      <Link to={`/edit/${item.id}`}>{<FaEdit  color='blue'/>}</Link>
+                      <Link to={`/show/${item.id}`}>{<FaRegEye />}</Link>
+                    </Td>
+                    }
                   </Tr>
               ))}
 

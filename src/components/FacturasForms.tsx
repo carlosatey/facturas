@@ -55,7 +55,7 @@ const FacturasForm = ({factura}:formFactura) => {
     return(
         <Flex display='flex' alignItems='center' justifyContent='center'  w='100vw'>
             <Box display='flex' bg='white' border="1px" borderColor="white"  boxShadow="0 0 10px rgba(0, 110, 0, 0.4)"  borderRadius={10} p={8} flexDirection={'column'}>
-                <h1 className='mb-8 text-3xl font-bold text-center'>Formulario Factura</h1>
+              <Text mb='8' fontWeight='bold' fontSize={24}>Formulario Factura</Text>
                 <Formik
                     initialValues={{ 
                         number: factura? factura.number: 0, 
