@@ -33,7 +33,7 @@ const Home = () => {
     return (
         <>
             <Flex alignItems={"center"} justifyContent={"center"}>
-                <Text mb='5' mt='5' fontWeight='bold' fontSize={24}> Home </Text>
+                <Text mb='5' mt='5' fontWeight='bold' fontSize={24}>Home</Text>
             </Flex>
             {isLoading ? (
                 <Flex h={'100vh'} w={'100vw'} alignItems={'center'} justifyContent={'center'}>
