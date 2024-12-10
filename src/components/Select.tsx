@@ -1,10 +1,10 @@
 import { Select as InputSelect} from '@chakra-ui/react';
 
-interface Select {
+interface SelectProps {
     handleFilter: (param: boolean|string) => void
 }
 
-const Select = ({handleFilter}:Select) => {
+const Select = ({handleFilter}:SelectProps) => {
 
     return (
         <InputSelect placeholder='Todas las facturas' onChange={(e) => {
