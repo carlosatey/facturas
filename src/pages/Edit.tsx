@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query";
 import { Flex } from "@chakra-ui/react"
 import { FacturasForm } from "../components/FacturasForms";
-import { Spinner } from '@chakra-ui/react';
+import { Spinner } from "../components/Spinner";
 
 const Edit = () => {
     const {getFacturasById} = useFacturas();
@@ -20,13 +20,7 @@ const Edit = () => {
             <Flex display='flex' align='center' justifyContent='center'  height="100vh" >
                 {isLoading ? (
                     <Flex h={'100vh'} w={'100vw'} alignItems={'center'} justifyContent={'center'}>
-                        <Spinner
-                        thickness='4px'
-                        speed='0.65s'
-                        emptyColor='gray.200'
-                        color='blue.500'
-                        size='xl'
-                        />
+                        <Spinner/>
                     </Flex>
                 ) : isError ? (
                     <p>Ocurrió un error al cargar los datos.</p>

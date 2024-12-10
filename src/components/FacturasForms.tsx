@@ -36,7 +36,8 @@ const FacturasForm = ({factura}:formFactura) => {
     });
     
     const removeQueryFromCache = () => {
-      queryClient.removeQueries({ queryKey: ['facturas_edit'], exact: true })
+      //queryClient.removeQueries({ queryKey: ['facturas_edit'], exact: true })
+      console.log("Hola mundo")
     };
 
     const validationSchema = Yup.object({

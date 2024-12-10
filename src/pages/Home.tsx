@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Button, Flex, Select, Box } from '@chakra-ui/react';
 import { useState } from "react";
 import { Facturas } from "../interfaces/Facturas";
-import { Spinner } from '@chakra-ui/react';
+import { Spinner } from "../components/Spinner";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/auth.context"; 
 
@@ -32,13 +32,7 @@ const Home = () => {
             </Flex>
             {isLoading ? (
                 <Flex h={'100vh'} w={'100vw'} alignItems={'center'} justifyContent={'center'}>
-                    <Spinner
-                    thickness='4px'
-                    speed='0.65s'
-                    emptyColor='gray.200'
-                    color='blue.500'
-                    size='xl'
-                    />
+                    <Spinner/>
                 </Flex>
             ) : isError ? (
                 <p>Ocurrió un error al cargar los datos.</p>

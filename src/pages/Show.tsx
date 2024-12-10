@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { List, ListItem, ListIcon, Button, Flex} from '@chakra-ui/react'
 import { MdCheckCircle } from "react-icons/md";
 import { format } from 'date-fns';
-import { Spinner } from '@chakra-ui/react';
+import { Spinner } from "../components/Spinner";
 
 const Show = () => {    
     const {idFactura} = useParams();
@@ -20,13 +20,7 @@ const Show = () => {
         <>
         {isLoading ? (
                 <Flex h={'100vh'} w={'100vw'} alignItems={'center'} justifyContent={'center'}>
-                  <Spinner
-                  thickness='4px'
-                  speed='0.65s'
-                  emptyColor='gray.200'
-                  color='blue.500'
-                  size='xl'
-                  />
+                  <Spinner/>
                 </Flex>
             ) : isError ? (
                 <p>Ocurrió un error al cargar los datos.</p>
