@@ -2,7 +2,7 @@ import { Table } from "../components/Table";
 import { useFacturas } from "../hooks/useFacturas";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { Button, Flex, Select, Box } from '@chakra-ui/react';
+import { Button, Flex, Select, Box, Text } from '@chakra-ui/react';
 import { useState } from "react";
 import { Facturas } from "../interfaces/Facturas";
 import { Spinner } from "../components/Spinner";
@@ -35,7 +35,7 @@ const Home = () => {
                     <Spinner/>
                 </Flex>
             ) : isError ? (
-                <p>Ocurrió un error al cargar los datos.</p>
+                <Text>Ocurrió un error al cargar los datos.</Text>
             ) : (
                 <>
                     <Flex flexDirection='column' width={'100%'} px={20}>

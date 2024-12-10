@@ -36,7 +36,7 @@ const FacturasForm = ({factura}:formFactura) => {
     });
     
     const removeQueryFromCache = () => {
-      //queryClient.removeQueries({ queryKey: ['facturas_edit'], exact: true })
+      queryClient.removeQueries({ queryKey: ['facturas_edit'], exact: true })
       console.log("Hola mundo")
     };
 
@@ -77,7 +77,7 @@ const FacturasForm = ({factura}:formFactura) => {
                                     render: () => (
                                       <Box color='white' p={3} bg='blue.500'>
                                         {/* JSON.stringify(values) */}
-                                        <p>Factura Editada Correctamente</p>
+                                        <Text>Factura Editada Correctamente</Text>
                                       </Box>
                                     ),
                                   })
@@ -93,7 +93,7 @@ const FacturasForm = ({factura}:formFactura) => {
                                     render: () => (
                                       <Box color='white' p={3} bg='green.500'>
                                         {/* JSON.stringify(values) */}
-                                        <p>Factura agregada correctamente</p>
+                                        <Text>Factura agregada correctamente</Text>
                                       </Box>
                                     ),
                                   })

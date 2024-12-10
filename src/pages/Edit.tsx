@@ -1,7 +1,7 @@
 import {useFacturas} from "../hooks/useFacturas"
 import { useParams } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query";
-import { Flex } from "@chakra-ui/react"
+import { Flex, Text } from "@chakra-ui/react"
 import { FacturasForm } from "../components/FacturasForms";
 import { Spinner } from "../components/Spinner";
 
@@ -23,7 +23,7 @@ const Edit = () => {
                         <Spinner/>
                     </Flex>
                 ) : isError ? (
-                    <p>Ocurrió un error al cargar los datos.</p>
+                    <Text>Ocurrió un error al cargar los datos.</Text>
                 ) : (
                     <>
                         <FacturasForm factura={data}/>

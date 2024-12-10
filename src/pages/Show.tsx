@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useFacturas } from "../hooks/useFacturas";
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import { List, ListItem, ListIcon, Button, Flex} from '@chakra-ui/react'
+import { List, ListItem, ListIcon, Button, Flex, Text} from '@chakra-ui/react'
 import { MdCheckCircle } from "react-icons/md";
 import { format } from 'date-fns';
 import { Spinner } from "../components/Spinner";
@@ -23,7 +23,7 @@ const Show = () => {
                   <Spinner/>
                 </Flex>
             ) : isError ? (
-                <p>Ocurrió un error al cargar los datos.</p>
+                <Text>Ocurrió un error al cargar los datos.</Text>
             ) : (
                 <>
                     <Flex alignItems={"center"} justifyContent={"center"} flexDirection={"column"} height={'100vh'}>
