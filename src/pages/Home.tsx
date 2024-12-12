@@ -48,7 +48,7 @@ const Home = () => {
                             
                             <Select handleFilter={handleFilter}/>
                             
-                            <Button colorScheme="green" px={8}>
+                            <Button id="addFactura_button" colorScheme="green" px={8}>
                                 <Link to="/new">Agregar Factura</Link>
                             </Button>
                             

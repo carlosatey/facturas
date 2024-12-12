@@ -159,6 +159,7 @@ const FacturasForm = ({factura}:formFactura) => {
                     <Checkbox
                     id='paid'
                     name="paid"
+                    type='checkbox'
                     className='ml-4 mb-4'
                     onChange={(e) => handleChange({ target: { name: e.target.name, value: e.target.checked } })}
                     onBlur={handleBlur}
@@ -218,7 +219,7 @@ const FacturasForm = ({factura}:formFactura) => {
                         <Button colorScheme='gray' onClick={() => removeQueryFromCache()}>
                             <Link to="/home">Cancelar</Link>
                         </Button>
-                        <Button type="submit" disabled={isSubmitting} colorScheme='green'>
+                        <Button id='create_invoice' type="submit" disabled={isSubmitting} colorScheme='green'>
                             Enviar
                         </Button>
                     </Box>
