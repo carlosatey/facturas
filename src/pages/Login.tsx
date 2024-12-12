@@ -111,7 +111,7 @@ const Login = () => {
                             <Text fontSize={14}>
                                 Aún no tienes una cuenta{' '}
                                 <Link as={RouterLink} _hover={{ textDecoration: "underline" }} to="/register" color="blue.500">
-                                    Regístrarse
+                                    Registrarse
                                 </Link>
                             </Text>
                         </Box>

@@ -87,6 +87,7 @@ const Register = () => {
                            {props => (
                              <form onSubmit={props.handleSubmit}>
                                 <Input
+                                id="name"
                                 placeholder="name"
                                 type="text"
                                 onChange={props.handleChange}
@@ -106,6 +107,7 @@ const Register = () => {
                                 </Text>
 
                                 <Input
+                                id="lastName"
                                 placeholder="lastName"
                                 type="text"
                                 onChange={props.handleChange}
@@ -124,6 +126,7 @@ const Register = () => {
                                 </Text>
 
                                 <Input
+                                id="email"
                                 placeholder="email"
                                 type="email"
                                 onChange={props.handleChange}
@@ -142,6 +145,7 @@ const Register = () => {
                                 </Text>
 
                                 <Input
+                                id="password"
                                 placeholder="password"
                                 type="password"
                                 onChange={props.handleChange}
@@ -160,6 +164,7 @@ const Register = () => {
                                 </Text>
 
                                 <Input
+                                id="confirmPassword"
                                 placeholder="confirm password"
                                 type="password"
                                 onChange={props.handleChange}
@@ -178,6 +183,7 @@ const Register = () => {
                                 </Text>
 
                                 <Input
+                                id="phone"
                                 placeholder="phone"
                                 type="tel"
                                 onChange={props.handleChange}
@@ -197,7 +203,13 @@ const Register = () => {
                                 </Text>
 
                                 <Box display={'flex'} alignItems={'center'} flexDirection={'column'} gap={5} mt={5}>
-                                    <Button type="submit" colorScheme="blue">Registrarse</Button>
+                                    <Button
+                                        id="register_button" 
+                                        type="submit" 
+                                        colorScheme="blue"
+                                    >
+                                        Registrarse
+                                    </Button>
                                     <Text fontSize={14}>
                                          Si ya tienes una cuenta  
                                          <Link as={RouterLink} _hover={{ textDecoration: "underline" }} to="/" color="blue.500"> Login</Link>
