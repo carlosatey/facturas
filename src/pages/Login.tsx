@@ -100,6 +100,7 @@ const Login = () => {
                         </Text>
                         <Box display={'flex'} alignItems={'center'} justifyContent={'center'} mt={5} gap={3} flexDirection={'column'}>
                             <Button 
+                                id='login_button'
                                 colorScheme='green' 
                                 p={5} 
                                 type="submit"
