@@ -52,7 +52,7 @@ const Home = () => {
                                 <Link to="/new">Agregar Factura</Link>
                             </Button>
                             
-                            <Button onClick={ ()=> logout(navigate)} px={8}>
+                            <Button id="logout_button" onClick={ ()=> logout(navigate)} px={8}>
                                 Cerrar Sesion
                             
                             </Button>
