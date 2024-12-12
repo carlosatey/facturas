@@ -34,7 +34,7 @@ const Table =  ({ items, columnOperation}: TableProps) => {
 
   return (
       <TableContainer>
-          <TablaChakra variant='simple'>
+          <TablaChakra id='data-table-invoices' variant='simple'>
             <TableCaption placement='top' fontSize={22} marginBottom={5}>Número Total de Facturas: {items.length}</TableCaption>
             <Thead>
               <Tr>

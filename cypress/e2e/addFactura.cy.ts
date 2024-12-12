@@ -12,9 +12,16 @@ describe ('Add Invoice', ()=> {
         cy.get('#paymentDate').type('2024-12-12');
         // Marcar un ckeck cuando se usa bibliotecas de componentes como (ChakaraUI)
         cy.get('#paid').click({ force: true }); 
-        cy.get('#client').type('Carlos', { delay: 50 });
+        cy.get('#client').type('testFactura', { delay: 50 });
         cy.get('#createdAt').type('2024-12-20');
 
+        //Boton agregar factura
         cy.get('#create_invoice').click();
+
+        //Para saber que se agrego a la Tabla la factura correctamente
+        cy.get('#data-table-invoices tbody tr') // Selecciona todas las filas de la tabla
+        .contains('testFactura') // Busca un texto específico en las filas
+        .should('exist'); // Verifica que el texto existe
+
     })
   })
